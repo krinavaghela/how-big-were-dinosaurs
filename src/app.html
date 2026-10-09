@@ -1,0 +1,593 @@
+<meta charset="utf-8">
+<title>How Big Were Dinosaurs?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one-screen stage. Engraved plates stand on one ground line; a log-scale camera walks from 5 cm to 10 km.
+   Plate card at left (desktop) / bottom sheet (phone); the geologic time strip runs along the foot. */
+:root{
+  --paper:#ece2cb; --paper-2:#e4d8bc; --ink:#2b2118; --tone:#ddcfac; --tone2:#c7b287;
+  --muted:#75644c; --rule:#c4b18c; --night:#0e0b08;
+  /* ICS International Chronostratigraphic Chart colours */
+  --tri:#812b92; --jur:#34b2c9; --cre:#7fc64e; --cen:#f2a23c; --impact:#e8542a;
+  --display:"IM Fell English","Iowan Old Style","Palatino Linotype",Georgia,serif;
+  --body:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#1b1813; --paper-2:#221e18; --ink:#ebe0c8; --tone:#2c271f; --tone2:#40372b;
+  --muted:#a8977c; --rule:#4a4033; color-scheme:dark;}}
+:root[data-theme="dark"]{
+  --paper:#1b1813; --paper-2:#221e18; --ink:#ebe0c8; --tone:#2c271f; --tone2:#40372b;
+  --muted:#a8977c; --rule:#4a4033; color-scheme:dark;}
+
+html,body{height:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.5 var(--body);overflow:hidden;-webkit-font-smoothing:antialiased}
+#app{position:relative;height:100%;overflow:hidden;touch-action:pan-y}
+#world,#hud,#fx{position:absolute;inset:0;width:100%;height:100%;display:block}
+#hud{pointer-events:none}
+#fx{pointer-events:none}
+#ground{position:absolute;left:0;right:0;bottom:0;border-top:1.5px solid var(--ink);
+  background:repeating-linear-gradient(to bottom,transparent 0 7px,color-mix(in srgb,var(--rule) 55%,transparent) 7px 8px);
+  -webkit-mask:linear-gradient(to bottom,#000 0,transparent 140px);mask:linear-gradient(to bottom,#000 0,transparent 140px)}
+
+/* ink plate classes (shared with art/ink.css) */
+.dino .f{fill:var(--paper);stroke:none}
+.dino .t{fill:var(--tone);stroke:none}
+.dino .t2{fill:var(--tone2);stroke:none}
+.dino .k{fill:var(--ink);stroke:none}
+.dino .o{fill:none;stroke:var(--ink);stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.dino .d{fill:none;stroke:var(--ink);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.dino .h{fill:none;stroke:var(--ink);stroke-width:.8;stroke-linecap:round;opacity:.75}
+.dino .s{fill:none;stroke:var(--ink);stroke-width:.6;stroke-linecap:round;opacity:.6}
+.dino .f.o,.dino .t.o,.dino .k.o,.dino .t2.o{stroke:var(--ink)}
+.dino .f.o{fill:var(--paper)}.dino .t.o{fill:var(--tone)}.dino .t2.o{fill:var(--tone2)}.dino .k.o{fill:var(--ink)}
+.dino .f.d,.dino .f.h,.dino .f.s{fill:var(--paper)}.dino .t.d,.dino .t.h,.dino .t.s{fill:var(--tone)}.dino .t2.d,.dino .t2.h,.dino .t2.s{fill:var(--tone2)}.dino .k.d,.dino .k.h,.dino .k.s{fill:var(--ink)}
+#art-human,#art-bus{opacity:.5}
+
+/* HUD captions */
+.cap{font:italic 15px var(--display);fill:var(--ink);text-anchor:middle}
+.cap-m{font:11px var(--mono);fill:var(--muted);text-anchor:middle;letter-spacing:.02em}
+.cap.cur{font-size:17px}
+.ref-cap{font:11px var(--mono);fill:var(--muted)}
+.speck{fill:none;stroke:var(--impact);stroke-width:1.5}
+.speck-t{font:italic 15px var(--display);fill:var(--ink)}
+
+/* top bar */
+#top{position:absolute;left:0;right:0;top:0;display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding:calc(14px + env(safe-area-inset-top,0px)) 20px 10px;pointer-events:none}
+#top .brand{font:20px var(--display);letter-spacing:.01em}
+#top .brand em{color:var(--muted)}
+#scale{display:flex;flex-direction:column;align-items:flex-end;gap:2px;font:11px var(--mono);color:var(--muted)}
+#scale i{display:block;height:6px;border:1.5px solid var(--ink);border-top:0;transition:width .12s linear}
+
+/* film title + labels */
+#intro{position:absolute;left:0;right:0;top:12%;text-align:center;padding-inline:16px;pointer-events:none}
+#intro .eyebrow{font:12px var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin:0 0 10px}
+#intro h1{font:400 clamp(40px,7vw,84px)/.98 var(--display);margin:0;text-wrap:balance}
+#intro h1 em{display:block;font-size:.62em;color:var(--muted)}
+#intro p.sub{max-width:34ch;margin:16px auto 0;font-size:17px;color:var(--muted)}
+#filmLabel{position:absolute;transform:translate(-50%,-100%);text-align:center;pointer-events:none;white-space:nowrap}
+#filmLabel .n{font:clamp(26px,3.4vw,40px)/1 var(--display)}
+#filmLabel .m{font:12px var(--mono);color:var(--muted);margin-top:6px;letter-spacing:.03em}
+
+/* finale overlays */
+#finale,#epi{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
+  padding-inline:16px;pointer-events:none;color:#f3e8d2;opacity:0}
+#finale .big{font:clamp(34px,6vw,72px)/1 var(--display);margin:0;text-wrap:balance}
+#finale .rows{margin-top:22px;display:grid;gap:6px;font:clamp(13px,1.6vw,16px) var(--mono);letter-spacing:.03em;color:#d9c8a6}
+#finale .rows b{color:var(--impact);font-weight:500}
+#epi{color:var(--ink);justify-content:flex-start;padding-top:13vh}
+#epi .big{font:clamp(30px,5vw,60px)/1.05 var(--display);margin:0;text-wrap:balance}
+#epi .sub{margin:14px auto 0;max-width:40ch;color:var(--muted);font-size:17px}
+
+/* plate card */
+#card{position:absolute;left:20px;top:72px;width:340px;max-height:calc(100% - 72px - 132px);overflow:auto;
+  background:var(--paper-2);border:1px solid var(--rule);padding:18px 20px 16px;box-sizing:border-box;
+  box-shadow:0 1px 0 var(--rule),0 18px 40px -28px rgba(0,0,0,.45);scrollbar-width:thin}
+#card .eb{display:flex;justify-content:space-between;align-items:center;gap:12px;font:11px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+#card .per{display:inline-flex;align-items:center;gap:6px}
+#card .per i{width:10px;height:10px;border-radius:2px;background:var(--cre);display:inline-block}
+#card h2{font:400 34px/1.02 var(--display);margin:10px 0 4px;text-wrap:balance}
+#card .sci{margin:0;color:var(--muted);font-size:15px}
+#card .sci em{color:var(--ink)}
+#card .mean{margin:2px 0 0;font-size:14px;color:var(--muted)}
+#card dl{display:grid;grid-template-columns:1fr 1fr;gap:10px 16px;margin:14px 0;padding:12px 0;border-block:1px solid var(--rule)}
+#card dl div{min-width:0}
+#card dt{font:10.5px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+#card dd{margin:2px 0 0;font-size:15px;line-height:1.3;font-variant-numeric:tabular-nums}
+#card .fact{margin:0 0 10px;font-size:16px;line-height:1.5}
+#card .cmp{margin:0 0 10px;font-style:italic;color:var(--muted);font-size:15px}
+#card .where{margin:0 0 10px;font-size:14px}
+#card .where span{font:10.5px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-right:6px}
+#card ul{margin:0 0 10px;padding-left:18px;font-size:14.5px}
+#card .src{margin:0;font-size:12.5px;color:var(--muted)}
+#card .src a{color:inherit}
+#card .act{margin-top:12px}
+
+/* bottom bar: time strip + controls */
+#bar{position:absolute;left:0;right:0;bottom:0;padding:0 20px calc(12px + env(safe-area-inset-bottom,0px));display:grid;gap:8px}
+#timeline{height:46px;position:relative}
+#timeline svg{width:100%;height:100%;display:block;overflow:visible}
+.tl-lab{font:10.5px var(--mono);letter-spacing:.08em;text-transform:uppercase}
+.tl-ma{font:10px var(--mono);fill:var(--muted)}
+.tl-now{font:italic 13px var(--display);fill:var(--ink)}
+#controls{display:flex;align-items:center;gap:10px}
+button,.btn{font:13px var(--mono);letter-spacing:.04em;color:var(--ink);background:var(--paper-2);border:1px solid var(--rule);
+  height:34px;min-width:34px;padding:0 12px;border-radius:2px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:6px}
+button:hover{border-color:var(--ink)}
+button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid var(--jur);outline-offset:2px}
+button.primary{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+#scrub{flex:1;min-width:0;accent-color:var(--ink)}
+#time{font:12px var(--mono);color:var(--muted);min-width:7ch;text-align:right;font-variant-numeric:tabular-nums}
+.ico{width:14px;height:14px;display:block}
+
+@media (max-width:720px){
+  #top{padding-inline:16px}
+  #top .brand{font-size:17px}
+  #card{left:0;right:0;top:auto;bottom:118px;width:auto;max-height:40%;border-inline:0;padding:14px 16px}
+  #card h2{font-size:28px}
+  #card dl{grid-template-columns:1fr 1fr;margin:10px 0;padding:8px 0}
+  #bar{padding-inline:16px}
+  #controls{gap:6px}
+  button{padding:0 9px}
+  #mode .lbl{display:none}
+  #intro{top:15%}
+}
+@media (prefers-reduced-motion:reduce){#scale i{transition:none}}
+.rec #controls{display:none}
+</style>
+
+<div id="app">
+  <svg id="world" class="dino" aria-hidden="true"><g id="cam"><!--__ART__--></g></svg>
+  <div id="ground"></div>
+  <svg id="hud" aria-hidden="true"></svg>
+
+  <header id="top">
+    <div class="brand">How Big Were Dinosaurs?</div>
+    <div id="scale" aria-label="Scale bar"><span id="scaleTxt">1 cm</span><i id="scaleBar" style="width:80px"></i></div>
+  </header>
+
+  <section id="intro">
+    <p class="eyebrow">A field guide to scale</p>
+    <h1>Dinosaurs<em>from smallest to largest</em></h1>
+    <p class="sub">From a two-gram hummingbird to a seventy-tonne titan, every plate drawn to true scale.</p>
+  </section>
+
+  <div id="filmLabel"><div class="n"></div><div class="m"></div></div>
+
+  <aside id="card" hidden aria-live="polite"></aside>
+
+  <canvas id="fx"></canvas>
+  <section id="finale" aria-hidden="true">
+    <p class="big">66 million years ago</p>
+    <div class="rows" id="finaleRows"></div>
+  </section>
+  <section id="epi" aria-hidden="true">
+    <p class="big">Some dinosaurs survived.<br>You call them birds.</p>
+    <p class="sub" id="epiSub"></p>
+  </section>
+
+  <footer id="bar">
+    <div id="timeline"><svg id="tl"></svg></div>
+    <div id="controls">
+      <button id="prev" aria-label="Previous dinosaur"><svg class="ico" viewBox="0 0 16 16"><path d="M10 3 5 8l5 5" fill="none" stroke="currentColor" stroke-width="1.8"/></svg></button>
+      <button id="play" class="primary" aria-label="Pause film"><svg class="ico" viewBox="0 0 16 16" id="playIco"></svg></button>
+      <button id="next" aria-label="Next dinosaur"><svg class="ico" viewBox="0 0 16 16"><path d="m6 3 5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.8"/></svg></button>
+      <input id="scrub" type="range" min="0" max="1000" value="0" step="1" aria-label="Film position">
+      <span id="time">0:00</span>
+      <button id="mode"><span class="lbl">Explore</span><svg class="ico" viewBox="0 0 16 16"><path d="M2 4h12M2 8h12M2 12h8" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button>
+    </div>
+  </footer>
+</div>
+
+<script>
+/*__DATA__*/
+(() => {
+const $ = s => document.querySelector(s);
+const NS = 'http://www.w3.org/2000/svg';
+const clamp = (v, a = 0, b = 1) => Math.max(a, Math.min(b, v));
+const lerp = (a, b, t) => a + (b - a) * t;
+const ease = t => t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+const easeIn = t => t * t;
+const sstep = (a, b, v) => { const t = clamp((v - a) / (b - a)); return t * t * (3 - 2 * t); };
+const REC = location.hash === '#record';
+if (REC) document.documentElement.classList.add('rec');
+
+const SPECIES = DATA.filter(d => d.id !== 'asteroid');
+const AST = DATA.find(d => d.id === 'asteroid') || {};
+const N = SPECIES.length;
+const app = $('#app'), cam = $('#cam'), hud = $('#hud'), fx = $('#fx'), ctx = fx.getContext('2d');
+
+/* ---------- world layout (units: centimetres; ground at y = 0) ---------- */
+function box(id) { const a = ART[id], k = a.len / 1000; return { w: a.vb[2] * k, h: a.vb[3] * k }; }
+function place(el, x, w, h) { el.setAttribute('x', x); el.setAttribute('y', -h); el.setAttribute('width', w); el.setAttribute('height', h); }
+const items = []; let x = 0;
+SPECIES.forEach((d, i) => {
+  const b = box(d.id);
+  if (i) x += items[i - 1].w * 0.22 + b.w * 0.06;
+  const el = document.getElementById('art-' + d.id);
+  items.push({ d, id: d.id, x, w: b.w, h: b.h, el }); place(el, x, b.w, b.h); x += b.w;
+});
+const rowEnd = x;
+const human = { el: $('#art-human'), ...box('human') };
+const bus = { el: $('#art-bus'), ...box('bus') }; bus.el.style.display = 'none';
+const ev = { el: $('#art-everest'), ...box('everest') }; ev.x = rowEnd + 2.5e5; place(ev.el, ev.x, ev.w, ev.h);
+const ast = { el: $('#art-asteroid'), ...box('asteroid') };
+// comparison pose: hanging in the sky to the right of Everest, its middle level with the summit
+ast.cx0 = ev.x + ev.w + ast.w * 0.95; ast.by0 = ev.h * 0.9 - ast.h * 0.5; // bottom height above ground
+ast.cx1 = ast.cx0 - ast.w * 0.55;                                         // impact point (x of centre at contact)
+function placeAst(p) { // p: 0 = comparison pose, 1 = touching ground
+  const cx = lerp(ast.cx0, ast.cx1, p), by = lerp(ast.by0, 0, p);
+  ast.el.setAttribute('x', cx - ast.w / 2); ast.el.setAttribute('y', -by - ast.h);
+  ast.el.setAttribute('width', ast.w); ast.el.setAttribute('height', ast.h);
+  return { cx, by };
+}
+placeAst(0);
+const FIN = { x: -rowEnd * 2, w: ast.cx0 + ast.w * 0.75 + rowEnd * 2, h: ast.by0 + ast.h * 1.12 }; // finale frame
+const FRAMES = items.map(it => ({ x: it.x, w: it.w, h: it.h })).concat([FIN]);
+
+/* ---------- view rectangle (where the focused plate must fit) ---------- */
+let W = 0, H = 0, DPR = 1, mode = 'film';
+const view = { l: 0, r: 0, t: 0, g: 0 }, viewT = { ...view };
+function targetView() {
+  const narrow = W < 720, cardOpen = mode === 'explore';
+  const g = narrow ? (cardOpen ? H * 0.40 : H * 0.62) : H * 0.68;
+  const l = (!narrow && cardOpen) ? 380 : 18, r = W - 18, t = narrow ? 70 : 84;
+  return { l, r, t, g: Math.round(g) };
+}
+function resize() {
+  W = app.clientWidth; H = app.clientHeight; DPR = Math.min(2, window.devicePixelRatio || 1);
+  fx.width = W * DPR; fx.height = H * DPR; Object.assign(viewT, targetView());
+  if (!view.r) Object.assign(view, viewT);
+  drawTimeline(); dirty = true;
+}
+
+/* ---------- camera ---------- */
+function frameCam(i) {
+  const f = FRAMES[i], aw = view.r - view.l, ah = view.g - view.t;
+  const fill = i === N ? 0.94 : (W < 720 && mode === 'film' ? 0.86 : 0.64);
+  return { c: f.x + f.w / 2, s: Math.min(aw * fill / f.w, ah * (i === N ? 0.94 : 0.84) / f.h) };
+}
+function camAt(u) {
+  u = clamp(u, 0, N); const i = Math.min(Math.floor(u), N - 1 + (u >= N ? 1 : 0)), f = u - i;
+  const A = frameCam(Math.min(i, N)); if (f < 1e-6 || i >= N) return A;
+  const B = frameCam(i + 1);
+  const s = Math.exp(lerp(Math.log(A.s), Math.log(B.s), f));
+  const den = 1 / B.s - 1 / A.s;
+  const g = Math.abs(den) > 1e-12 ? (1 / s - 1 / A.s) / den : f;
+  return { c: lerp(A.c, B.c, g), s };
+}
+
+/* ---------- HUD (captions, labels) ---------- */
+const caps = items.map(it => {
+  const g = document.createElementNS(NS, 'g');
+  g.innerHTML = `<text class="cap"></text><text class="cap-m"></text>`;
+  g.children[0].textContent = it.d.name; g.children[1].textContent = fmtLen(it.d.length_cm);
+  hud.appendChild(g); return g;
+});
+const refCap = document.createElementNS(NS, 'text'); refCap.setAttribute('class', 'ref-cap'); refCap.textContent = 'You · 1.75 m'; hud.appendChild(refCap);
+const finG = document.createElementNS(NS, 'g'); hud.appendChild(finG);
+finG.innerHTML = `<circle class="speck" r="16"/><text class="speck-t" id="speckT">↑ all 24 dinosaurs stand inside this circle</text>
+  <text class="cap" id="evCap">Mount Everest</text><text class="cap-m" id="evCapM">8,849 m tall</text>
+  <text class="cap" id="astCap">The Chicxulub asteroid</text><text class="cap-m" id="astCapM">about 10 km (6 miles) wide</text>`;
+
+function setVis(el, on) { const v = on ? '' : 'none'; if (el.style.display !== v) el.style.display = v; }
+
+/* ---------- render a state ---------- */
+const S = { u: 0, fall: 0, film: null };
+function render() {
+  const cs = camAt(S.u), c = cs.c, s = cs.s * (1 - 0.48 * (S.introK || 0));
+  const ax = (view.l + view.r) / 2, tx = ax - c * s, g = view.g;
+  cam.setAttribute('transform', `translate(${tx.toFixed(2)},${g}) scale(${s})`);
+  $('#ground').style.top = g + 'px';
+  const sx = wx => tx + wx * s;
+  const near = Math.round(clamp(S.u, 0, N));
+  // plates
+  items.forEach((it, i) => {
+    const pw = it.w * s, x0 = sx(it.x), on = pw > 0.6 && x0 < W + 40 && x0 + pw > -40;
+    setVis(it.el, on);
+    it.el.style.opacity = i ? 1 - clamp(S.introK || 0) : 1;
+    const cp = caps[i], show = on && pw > 34 && S.u < N - 0.2 && (i === 0 || (S.introK || 0) < 0.5);
+    setVis(cp, show);
+    if (show) {
+      const cx = clamp(x0 + pw / 2, 40, W - 40);
+      const big = i === near;
+      cp.children[0].setAttribute('x', cx); cp.children[0].setAttribute('y', g + 24);
+      cp.children[1].setAttribute('x', cx); cp.children[1].setAttribute('y', g + 40);
+      cp.children[0].classList.toggle('cur', big);
+      cp.style.opacity = (big ? 1 : 0.75) * sstep(34, 90, pw);
+    }
+  });
+  // human reference ghost: stands behind the tail of the focused plate
+  const fi = clamp(S.u, 0, N - 1), i0 = Math.floor(fi), f = fi - i0, i1 = Math.min(i0 + 1, N - 1);
+  const hx = lerp(items[i0].x + items[i0].w * 0.18, items[i1].x + items[i1].w * 0.18, ease(f)) - human.w / 2;
+  const L = lerp(items[i0].d.length_cm, items[i1].d.length_cm, f);
+  const hOp = sstep(150, 200, L) * (1 - sstep(N - 1, N - 0.6, S.u));
+  setVis(human.el, hOp > 0.01); setVis(refCap, hOp > 0.01 && human.h * s > 50);
+  if (hOp > 0.01) { place(human.el, hx, human.w, human.h); human.el.style.opacity = 0.5 * hOp;
+    refCap.setAttribute('x', sx(hx + human.w * 0.5) - 4); refCap.setAttribute('y', g - human.h * s - 8);
+    refCap.setAttribute('text-anchor', 'middle'); refCap.style.opacity = hOp; }
+  // finale objects
+  const fin = sstep(N - 0.85, N - 0.05, S.u);
+  const evOn = S.u > N - 1 && ev.w * s > 2; setVis(ev.el, evOn);
+  const ap = placeAst(S.fall), astOn = S.u > N - 1 && (!S.film || S.film.t < S.film.tImpact + 0.05); setVis(ast.el, astOn);
+  setVis(finG, fin > 0.01);
+  if (fin > 0.01) {
+    finG.style.opacity = fin * (1 - S.fall * 2);
+    const ci = finG.querySelector('circle'), rx = sx(rowEnd / 2);
+    ci.setAttribute('cx', rx); ci.setAttribute('cy', g - 6);
+    const st = finG.querySelector('#speckT'); st.setAttribute('x', rx - 14); st.setAttribute('y', g + (W < 720 ? 60 : 40));
+    const ex = sx(ev.x + ev.w / 2);
+    for (const [id, y] of [['#evCap', g + 24], ['#evCapM', g + 40]]) { const t = finG.querySelector(id); t.setAttribute('x', ex); t.setAttribute('y', y); }
+    const axs = clamp(sx(ap.cx), 130, W - 130), ayTop = g - (ap.by + ast.h) * s;
+    for (const [id, y] of [['#astCap', ayTop - 26], ['#astCapM', ayTop - 10]]) { const t = finG.querySelector(id); t.setAttribute('x', axs); t.setAttribute('y', y); }
+  }
+  // scale bar
+  const target = W < 720 ? 70 : 110, cm = target / s, p = Math.pow(10, Math.floor(Math.log10(cm)));
+  const nice = [1, 2, 5, 10].map(m => m * p).reduce((a, b) => Math.abs(b - cm) < Math.abs(a - cm) ? b : a);
+  $('#scaleBar').style.width = (nice * s).toFixed(1) + 'px';
+  $('#scaleTxt').textContent = fmtLen(nice);
+  // film label (film mode)
+  const fl = $('#filmLabel');
+  if (mode === 'film' && S.film && S.film.t > S.film.tIntro - 0.4 && S.film.t < S.film.tCut && S.u < N - 0.6) {
+    const it = items[near], top = g - it.h * s, lx = clamp(sx(it.x + it.w / 2), 120, W - 120);
+    fl.style.left = lx + 'px'; fl.style.top = Math.max(view.t + 70, top - 18) + 'px';
+    if (fl.dataset.id !== it.id) { fl.dataset.id = it.id; fl.querySelector('.n').textContent = it.d.name;
+      fl.querySelector('.m').textContent = `${fmtLen(it.d.length_cm)} long · ${when(it.d)}`; }
+    fl.style.opacity = clamp(1 - Math.abs(S.u - near) * 4) * sstep(S.film.tIntro - 0.4, S.film.tIntro, S.film.t);
+  } else fl.style.opacity = 0;
+  updateTimeline();
+}
+function fmtLen(cm) {
+  if (cm < 1) return +(cm * 10).toPrecision(2) + ' mm';
+  if (cm < 100) return +cm.toPrecision(2) + ' cm';
+  if (cm < 1e5) return +(cm / 100).toPrecision(3) + ' m';
+  return +(cm / 1e5).toPrecision(3) + ' km';
+}
+function when(d) {
+  const [a, b] = d.ma || [0, 0];
+  if (!a && !b) return 'alive today';
+  return a === b ? `${a} million years ago` : `${a}–${b} million years ago`;
+}
+
+/* ---------- geologic time strip ---------- */
+const MA0 = 240, PERIODS = [['Triassic', 251.9, 201.4, '--tri', '#fff'], ['Jurassic', 201.4, 145, '--jur', '#10303a'], ['Cretaceous', 145, 66, '--cre', '#1d3410'], ['Cenozoic', 66, 0, '--cen', '#3d2405']];
+const tl = $('#tl'); let tlW = 0;
+const tlx = ma => 8 + (1 - ma / MA0) * (tlW - 16);
+function drawTimeline() {
+  tlW = tl.clientWidth || W - 40; const narrow = tlW < 520;
+  let s = '';
+  for (const [n, a, b, c, tc] of PERIODS) {
+    const x0 = tlx(Math.min(a, MA0)), x1 = tlx(b);
+    s += `<rect x="${x0}" y="22" width="${x1 - x0}" height="14" fill="var(${c})"/>`;
+    if (x1 - x0 > 44) s += `<text class="tl-lab" x="${(x0 + x1) / 2}" y="32.5" text-anchor="middle" fill="${tc}">${narrow ? ({ Triassic: 'Tri.', Cretaceous: 'Cret.' }[n] || n) : n}</text>`;
+  }
+  for (const ma of [200, 150, 100, 66, 0]) s += `<text class="tl-ma" x="${tlx(ma)}" y="46" text-anchor="middle">${ma ? ma + ' Ma' : 'today'}</text>`;
+  s += SPECIES.map(d => { const m = ((d.ma || [0, 0])[0] + (d.ma || [0, 0])[1]) / 2; return `<line x1="${tlx(m)}" x2="${tlx(m)}" y1="16" y2="21" stroke="var(--muted)" stroke-width="1"/>`; }).join('');
+  s += `<line x1="${tlx(66)}" x2="${tlx(66)}" y1="12" y2="36" stroke="var(--impact)" stroke-width="2"/>`;
+  s += `<rect id="tlCur" y="14" height="24" fill="none" stroke="var(--ink)" stroke-width="1.6"/><text id="tlTxt" class="tl-now" y="10"></text>`;
+  tl.innerHTML = s;
+}
+let tlLast = '';
+function updateTimeline() {
+  const r = tl.querySelector('#tlCur'), t = tl.querySelector('#tlTxt'); if (!r) return;
+  const i = Math.round(clamp(S.u, 0, N)), d = i >= N ? null : items[i].d;
+  const key = (d ? d.id : 'ast') + tlW; if (key === tlLast) return; tlLast = key;
+  const [a, b] = d ? d.ma : [66.04, 66.04];
+  const x0 = tlx(a), x1 = Math.max(tlx(b), x0 + 3), mid = (x0 + x1) / 2;
+  r.setAttribute('x', x0 - 2); r.setAttribute('width', x1 - x0 + 4);
+  t.textContent = d ? `${d.name} · ${when(d)}` : 'Impact · 66 million years ago';
+  const anchor = mid < 140 ? 'start' : mid > tlW - 140 ? 'end' : 'middle';
+  t.setAttribute('x', anchor === 'start' ? Math.max(0, x0) : anchor === 'end' ? Math.min(tlW, x1) : mid); t.setAttribute('text-anchor', anchor);
+}
+
+/* ---------- the 30-second film ---------- */
+const F = { tIntro: 2.2, per: 0.82, hold: 0.28 };
+F.tWalk = F.tIntro + (N - 1) * F.per; F.tHold = F.tWalk + 0.8; F.tZoom = F.tHold + 2.3;
+F.tCompare = F.tZoom + 0.9; F.tImpact = F.tCompare + 0.9; F.tCut = F.tImpact + 2.8; F.tEnd = F.tCut + 2.8;
+function filmU(t) {
+  if (t < F.tIntro) return 0;
+  if (t < F.tWalk) { const k = t - F.tIntro, i = Math.floor(k / F.per), lt = k - i * F.per; return i + ease(clamp((lt - F.hold) / (F.per - F.hold))); }
+  if (t < F.tHold) return N - 1;
+  if (t < F.tZoom) return N - 1 + ease((t - F.tHold) / (F.tZoom - F.tHold));
+  if (t < F.tCut) return N;
+  return 0;
+}
+function hash(n) { const s = Math.sin(n * 127.1 + 311.7) * 43758.5453; return s - Math.floor(s); }
+function renderFilm(t) {
+  S.film = { t, ...F };
+  S.u = filmU(t);
+  S.introK = t >= F.tCut ? 1.2 : 1 - ease(clamp((t - (F.tIntro - 1.0)) / 1.0));
+  S.fall = t < F.tCompare ? 0 : easeIn(clamp((t - F.tCompare) / (F.tImpact - F.tCompare)));
+  render();
+  // title card
+  $('#intro').style.opacity = 1 - sstep(F.tIntro - 0.7, F.tIntro, t);
+  // fx canvas: entry glow, impact flash, fireball, ash
+  ctx.setTransform(DPR, 0, 0, DPR, 0, 0); ctx.clearRect(0, 0, W, H);
+  const { c, s } = camAt(S.u), tx = (view.l + view.r) / 2 - c * s, g = view.g;
+  if (t >= F.tCompare && t < F.tImpact) {      // atmospheric entry: glowing bow shock + trail
+    const k = S.fall, ap = { cx: lerp(ast.cx0, ast.cx1, k), by: lerp(ast.by0, 0, k) };
+    const px = tx + ap.cx * s, py = g - (ap.by + ast.h / 2) * s, r = ast.w * s / 2;
+    const dx = (ast.cx0 - ast.cx1) * s, dy = -(ast.by0) * s, len = Math.hypot(dx, dy), ux = dx / len, uy = dy / len;
+    const gr = ctx.createLinearGradient(px, py, px + ux * r * 7, py + uy * r * 7);
+    gr.addColorStop(0, `rgba(255,190,90,${0.85 * k})`); gr.addColorStop(1, 'rgba(232,84,42,0)');
+    ctx.strokeStyle = gr; ctx.lineCap = 'round'; ctx.lineWidth = r * 1.7;
+    ctx.beginPath(); ctx.moveTo(px, py); ctx.lineTo(px + ux * r * 7, py + uy * r * 7); ctx.stroke();
+    const rg = ctx.createRadialGradient(px, py, r * 0.8, px, py, r * 1.5);
+    rg.addColorStop(0, `rgba(255,214,140,${0.7 * k})`); rg.addColorStop(1, 'rgba(255,120,40,0)');
+    ctx.fillStyle = rg; ctx.beginPath(); ctx.arc(px, py, r * 1.5, 0, 7); ctx.fill();
+  }
+  let dark = 0, fin = 0, epi = 0;
+  if (t >= F.tImpact && t < F.tCut) {
+    const k = t - F.tImpact, px = tx + ast.cx1 * s, py = g;
+    const R = Math.max(W, H) * 1.3 * (1 - Math.pow(1 - clamp(k / 1.1), 3));
+    const fb = ctx.createRadialGradient(px, py, 0, px, py, Math.max(1, R));
+    fb.addColorStop(0, 'rgba(255,250,225,1)'); fb.addColorStop(0.25, 'rgba(255,196,92,.95)');
+    fb.addColorStop(0.6, 'rgba(232,84,42,.85)'); fb.addColorStop(1, 'rgba(90,24,10,0)');
+    ctx.globalAlpha = 1 - sstep(0.7, 1.8, k); ctx.fillStyle = fb; ctx.fillRect(0, 0, W, H); ctx.globalAlpha = 1;
+    const flash = 1 - sstep(0, 0.45, k); if (flash > 0) { ctx.fillStyle = `rgba(255,253,240,${flash})`; ctx.fillRect(0, 0, W, H); }
+    dark = sstep(0.35, 1.5, k);
+    fin = sstep(0.9, 1.3, k);
+  } else if (t >= F.tCut) {
+    const k = t - F.tCut; dark = 1 - sstep(0.25, 1.4, k); epi = sstep(0.6, 1.2, k);
+  }
+  if (dark > 0) {
+    ctx.fillStyle = `rgba(14,11,8,${0.94 * dark})`; ctx.fillRect(0, 0, W, H);
+    ctx.fillStyle = `rgba(214,200,176,${0.55 * dark})`;           // falling ash
+    const n = Math.round(W * H / 5200);
+    for (let i = 0; i < n; i++) {
+      const sp = 0.05 + hash(i + 7) * 0.12, y = ((hash(i) + (t * sp)) % 1) * H, x0 = hash(i * 3.1) * W + Math.sin(t * 0.8 + i) * 8;
+      const r = 0.5 + hash(i * 1.7) * 1.4; ctx.beginPath(); ctx.arc(x0, y, r, 0, 7); ctx.fill();
+    }
+  }
+  $('#finale').style.opacity = fin * (1 - sstep(F.tCut - 0.35, F.tCut, t));
+  $('#epi').style.opacity = epi;
+  $('#time').textContent = fmtT(t);
+  if (!scrubbing) $('#scrub').value = Math.round(t / F.tEnd * 1000);
+}
+const fmtT = t => `${Math.floor(t / 60)}:${String(Math.floor(t % 60)).padStart(2, '0')}`;
+
+/* finale text, from verified data */
+(function finaleText() {
+  const rows = AST.finale_rows || [
+    `a <b>${AST.diameter || '~10 km'}</b> asteroid struck the Yucatán Peninsula`,
+    `it left a crater <b>${AST.crater || '~180 km'}</b> wide`,
+    `dust and soot blotted out the Sun · <b>${AST.extinction || '~75%'}</b> of species vanished`,
+    `including every dinosaur that could not fly`];
+  $('#finaleRows').innerHTML = rows.map(r => `<div>${r}</div>`).join('');
+  $('#epiSub').textContent = AST.survivors_short || 'Birds are living theropod dinosaurs: about 11,000 species of them share the planet with us today.';
+})();
+
+/* ---------- explore mode: the plate card ---------- */
+const card = $('#card');
+const PER_COLOR = p => /triass/i.test(p) ? '--tri' : /jurass/i.test(p) ? '--jur' : /cretac/i.test(p) ? '--cre' : '--cen';
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+function src(list) { return (list || []).map(s => `<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.label)}</a>`).join(' · '); }
+function fillCard(i) {
+  if (i >= N) {
+    const a = AST;
+    card.innerHTML = `<div class="eb"><span>Finale</span><span class="per"><i style="background:var(--impact)"></i>66.0 million years ago</span></div>
+      <h2>${esc(a.name || 'The Chicxulub impactor')}</h2>
+      <p class="sci">Yucatán Peninsula, Mexico</p>
+      <dl><div><dt>Diameter</dt><dd>${esc(a.diameter_s)}</dd></div><div><dt>Speed</dt><dd>${esc(a.speed_s)}</dd></div>
+      <div><dt>Crater</dt><dd>${esc(a.crater_s)}</dd></div><div><dt>Energy</dt><dd>${esc(a.energy_s)}</dd></div></dl>
+      <p class="fact">${esc(a.fact || '')}</p>
+      ${a.aftermath ? `<ul>${a.aftermath.map(x => `<li>${esc(x)}</li>`).join('')}</ul>` : ''}
+      <p class="cmp">${esc(a.survivors || '')}</p>
+      <p class="src">Sources: ${src(a.sources)}</p>
+      <div class="act"><button class="primary" id="watch">Watch the impact</button></div>`;
+    $('#watch').onclick = () => { startFilm(F.tCompare - 0.6); };
+    return;
+  }
+  const d = items[i].d;
+  card.innerHTML = `<div class="eb"><span>Plate ${i + 1} of ${N}</span><span class="per"><i style="background:var(${PER_COLOR(d.period || '')})"></i>${esc((d.period || '').replace(/\s*\(.*\)/, ''))}</span></div>
+    <h2>${esc(d.name)}</h2>
+    <p class="sci"><em>${esc(d.sci)}</em>${d.pron ? ` · ${esc(d.pron)}` : ''}</p>
+    ${d.meaning ? `<p class="mean">“${esc(d.meaning.replace(/^[\s'"‘“]+|[\s'"’”]+$/g, ''))}”</p>` : ''}
+    <dl><div><dt>Length</dt><dd>${esc(d.length)}</dd></div><div><dt>Height</dt><dd>${esc(d.height)}</dd></div>
+    <div><dt>Mass</dt><dd>${esc(d.mass)}</dd></div><div><dt>Lived</dt><dd>${esc(when(d))}</dd></div></dl>
+    <p class="fact">${esc(d.fact)}</p>
+    ${d.compare ? `<p class="cmp">${esc(d.compare)}</p>` : ''}
+    ${d.note ? `<p class="where">${esc(d.note)}</p>` : ''}
+    <p class="where"><span>Found</span>${esc(d.place)}<br><span>Diet</span>${esc(d.diet)}</p>
+    <p class="src">Sources: ${src(d.sources)}</p>`;
+}
+
+/* ---------- state machine & input ---------- */
+let playing = false, filmT = 0, last = 0, dirty = true, scrubbing = false;
+let tw = null, cardIdx = -1;     // explore tween
+function setMode(m) {
+  mode = m; card.hidden = m !== 'explore';
+  Object.assign(viewT, targetView());
+  $('#mode .lbl').textContent = m === 'film' ? 'Explore' : 'Play film';
+  $('#scrub').setAttribute('aria-label', m === 'film' ? 'Film position' : 'Choose a dinosaur');
+  if (m === 'explore') {
+    playing = false; S.introK = 0; $('#scrub').max = N; $('#scrub').step = 1;
+    ctx.clearRect(0, 0, fx.width, fx.height); S.fall = 0; S.film = null;
+    for (const id of ['#intro', '#finale', '#epi']) $(id).style.opacity = 0;
+  } else { $('#scrub').max = 1000; }
+  updPlay(); dirty = true;
+}
+function updPlay() {
+  $('#playIco').innerHTML = playing ? '<path d="M4 3h3v10H4zM9 3h3v10H9z" fill="currentColor"/>' : '<path d="M4 2.5v11l9-5.5z" fill="currentColor"/>';
+  $('#play').setAttribute('aria-label', playing ? 'Pause film' : 'Play film');
+}
+function startFilm(t = 0) { setMode('film'); filmT = t; playing = true; updPlay(); last = performance.now(); }
+function goTo(i) {
+  i = clamp(Math.round(i), 0, N);
+  if (mode !== 'explore') { const u0 = mode === 'film' ? clamp(S.u, 0, N) : S.u; setMode('explore'); S.u = u0; }
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const dist = Math.abs(i - S.u);
+  tw = { from: S.u, to: i, t0: performance.now(), dur: reduce ? 1 : (dist > 1 ? 900 + 300 * Math.log2(dist) : 750) };
+  if (cardIdx !== i) { cardIdx = i; fillCard(i); }
+  $('#scrub').value = i; $('#time').textContent = i >= N ? 'impact' : `${i + 1} / ${N}`;
+}
+function step(dir) { goTo((tw ? tw.to : Math.round(S.u)) + dir); }
+
+$('#prev').onclick = () => step(-1);
+$('#next').onclick = () => step(1);
+$('#play').onclick = () => {
+  if (mode === 'explore') return startFilm(0);
+  if (filmT >= F.tEnd) filmT = 0;
+  playing = !playing; last = performance.now(); updPlay();
+};
+$('#mode').onclick = () => mode === 'film' ? goTo(Math.round(clamp(S.u, 0, N))) : startFilm(0);
+const scrub = $('#scrub');
+scrub.addEventListener('input', () => {
+  if (mode === 'film') { scrubbing = true; filmT = scrub.value / 1000 * F.tEnd; renderFilm(filmT); scrubbing = false; }
+  else goTo(+scrub.value);
+});
+addEventListener('keydown', e => {
+  if (e.target.tagName === 'INPUT' && e.target.type === 'range' && mode === 'film') return;
+  if (e.key === 'ArrowRight') { e.preventDefault(); step(1); }
+  else if (e.key === 'ArrowLeft') { e.preventDefault(); step(-1); }
+  else if (e.key === ' ' && e.target.tagName !== 'BUTTON') { e.preventDefault(); $('#play').click(); }
+});
+let wheelAcc = 0, wheelLock = 0;
+app.addEventListener('wheel', e => {
+  if (card.contains(e.target)) return;
+  e.preventDefault(); const now = performance.now();
+  wheelAcc += Math.abs(e.deltaY) > Math.abs(e.deltaX) ? e.deltaY : e.deltaX;
+  if (now > wheelLock && Math.abs(wheelAcc) > 40) { step(Math.sign(wheelAcc)); wheelAcc = 0; wheelLock = now + 420; }
+}, { passive: false });
+let touch = null;
+app.addEventListener('touchstart', e => { if (!card.contains(e.target) && !$('#bar').contains(e.target)) touch = e.touches[0]; }, { passive: true });
+app.addEventListener('touchend', e => {
+  if (!touch) return; const t = e.changedTouches[0], dx = t.clientX - touch.clientX, dy = t.clientY - touch.clientY; touch = null;
+  if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) step(dx < 0 ? 1 : -1);
+}, { passive: true });
+addEventListener('resize', resize);
+
+function loop(now) {
+  const dt = Math.min(0.1, (now - (last || now)) / 1000); last = now;
+  // ease the view rectangle when the card opens/closes
+  let moved = false;
+  for (const k of ['l', 'r', 't', 'g']) { const d = viewT[k] - view[k]; if (Math.abs(d) > 0.3) { view[k] += d * (1 - Math.exp(-dt * 9)); moved = true; } else view[k] = viewT[k]; }
+  if (mode === 'film') {
+    if (playing) { filmT += dt; if (filmT >= F.tEnd) { filmT = F.tEnd; playing = false; updPlay(); } }
+    if (playing || moved || dirty) renderFilm(filmT);
+  } else {
+    if (tw) { const k = clamp((now - tw.t0) / tw.dur); S.u = lerp(tw.from, tw.to, ease(k)); if (k >= 1) tw = null; dirty = true; }
+    if (dirty || moved) render();
+  }
+  dirty = false;
+  requestAnimationFrame(loop);
+}
+
+/* recording hook: deterministic frame at film time t */
+window.renderAt = t => { if (mode !== 'film') setMode('film'); playing = false; Object.assign(view, targetView()); renderFilm(t); };
+window.FILM_LENGTH = F.tEnd;
+window.exploreAt = i => { document.documentElement.classList.remove('rec'); goTo(i); tw = null; S.u = i; Object.assign(view, targetView()); render(); };
+
+resize(); Object.assign(view, viewT); renderFilm(0); updPlay();
+if (!REC) {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce) goTo(0);
+  else setTimeout(() => { if (mode === 'film' && filmT === 0) { playing = true; last = performance.now(); updPlay(); } }, 900);
+  requestAnimationFrame(loop);
+}
+})();
+</script>

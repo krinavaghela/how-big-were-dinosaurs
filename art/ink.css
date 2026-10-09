@@ -1,0 +1,13 @@
+/* Shared ink-plate classes. Art files use ONLY these classes - no inline colors. */
+.dino .f  { fill: var(--paper, #ece2cb); stroke: none; }                 /* body fill (paper) */
+.dino .t  { fill: var(--tone, #ddcfac); stroke: none; }                  /* far-side limbs / shadowed fill */
+.dino .t2 { fill: var(--tone2, #c7b287); stroke: none; }                 /* deeper tone (mouth interior, sail shade) */
+.dino .k  { fill: var(--ink, #2b2118); stroke: none; }                   /* solid ink: eye, nostril, claws, dark feather bars */
+.dino .o  { fill: none; stroke: var(--ink, #2b2118); stroke-width: 3;   stroke-linecap: round; stroke-linejoin: round; }
+.dino .d  { fill: none; stroke: var(--ink, #2b2118); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.dino .h  { fill: none; stroke: var(--ink, #2b2118); stroke-width: 0.8; stroke-linecap: round; opacity: .75; }
+.dino .s  { fill: none; stroke: var(--ink, #2b2118); stroke-width: 0.6; stroke-linecap: round; opacity: .6; }
+.dino .f.o, .dino .t.o, .dino .k.o, .dino .t2.o { stroke: var(--ink, #2b2118); }
+.dino .f.o { fill: var(--paper, #ece2cb); } .dino .t.o { fill: var(--tone, #ddcfac); } .dino .t2.o { fill: var(--tone2, #c7b287); } .dino .k.o { fill: var(--ink, #2b2118); }
+
+.dino .f.d,.dino .f.h,.dino .f.s{fill:var(--paper, #ece2cb)}.dino .t.d,.dino .t.h,.dino .t.s{fill:var(--tone, #ddcfac)}.dino .t2.d,.dino .t2.h,.dino .t2.s{fill:var(--tone2, #c7b287)}.dino .k.d,.dino .k.h,.dino .k.s{fill:var(--ink, #2b2118)}

@@ -1,0 +1,823 @@
+[
+ {
+  "id": "beehummingbird",
+  "name": "Bee hummingbird",
+  "sci": "Mellisuga helenae",
+  "pron": "mel-ih-SOO-guh heh-LEE-nee",
+  "meaning": "Mellisuga: 'honey-sucker' (Latin)",
+  "length_cm": 5.5,
+  "length": "5.5–6.1 cm (males ≈5.5 cm, females ≈6.1 cm)",
+  "height": "A few centimetres tall",
+  "mass": "1.95–2.6 g",
+  "mass_kg": 0.002,
+  "ma": [
+   0,
+   0
+  ],
+  "period": "Living today (Cuba)",
+  "place": "Cuba and the Isla de la Juventud",
+  "diet": "Nectar and small insects",
+  "fact": "Birds ARE dinosaurs: the living branch of the theropods, T. rex's group. At about two grams, this is the smallest living bird, and so the smallest known dinosaur.",
+  "compare": "about as long as a credit card is tall (5.4 cm)",
+  "sources": [
+   {
+    "label": "Wikipedia: Bee hummingbird",
+    "url": "https://en.wikipedia.org/wiki/Bee_hummingbird"
+   },
+   {
+    "label": "Wikipedia: Bird",
+    "url": "https://en.wikipedia.org/wiki/Bird"
+   }
+  ]
+ },
+ {
+  "id": "anchiornis",
+  "name": "Anchiornis",
+  "sci": "Anchiornis huxleyi",
+  "pron": "an-kee-OR-nis",
+  "meaning": "'near bird'",
+  "length_cm": 34,
+  "length": "34 cm (holotype); the largest specimens ≈60 cm",
+  "height": "Wingspan of the largest specimens ≈57 cm",
+  "mass": "≈110 g (holotype); the largest ≈0.6–1 kg",
+  "mass_kg": 0.11,
+  "ma": [
+   160.9,
+   160.3
+  ],
+  "period": "Late Jurassic (Oxfordian)",
+  "place": "Tiaojishan Formation, Liaoning, China",
+  "diet": "Carnivore (gut pellets hold lizard bones and fish scales)",
+  "fact": "In 2010, fossil pigment sacs revealed its colours: grey-black body, reddish crown, and black-tipped white wing feathers. It was the first dinosaur coloured head to toe.",
+  "compare": "a little longer than a 30 cm ruler",
+  "sources": [
+   {
+    "label": "Wikipedia: Anchiornis",
+    "url": "https://en.wikipedia.org/wiki/Anchiornis"
+   },
+   {
+    "label": "Li et al. 2010, Science (plumage colour)",
+    "url": "https://doi.org/10.1126/science.1186290"
+   }
+  ]
+ },
+ {
+  "id": "archaeopteryx",
+  "name": "Archaeopteryx",
+  "sci": "Archaeopteryx lithographica",
+  "pron": "AR-kee-OP-ter-iks",
+  "meaning": "'ancient wing'",
+  "length_cm": 50,
+  "length": "up to ≈50 cm (largest individuals)",
+  "height": "Wingspan up to ≈70 cm",
+  "mass": "≈0.5–1 kg",
+  "mass_kg": 0.8,
+  "ma": [
+   150.8,
+   148.5
+  ],
+  "period": "Late Jurassic (Tithonian)",
+  "place": "Solnhofen limestones, Bavaria, Germany",
+  "diet": "Carnivore (small prey)",
+  "fact": "Its first skeleton was found in 1861, two years after Darwin's 'Origin of Species': feathered wings, plus teeth, claws and a bony tail. Fourteen are known.",
+  "compare": "magpie-sized; the biggest were about as big as a raven",
+  "sources": [
+   {
+    "label": "Wikipedia: Archaeopteryx",
+    "url": "https://en.wikipedia.org/wiki/Archaeopteryx"
+   }
+  ]
+ },
+ {
+  "id": "microraptor",
+  "name": "Microraptor",
+  "sci": "Microraptor gui",
+  "pron": "MY-kroh-RAP-tor",
+  "meaning": "'small plunderer'",
+  "length_cm": 77,
+  "length": "77–80 cm",
+  "height": "Wingspan ≈0.9–1 m, with feathered wings on arms AND legs",
+  "mass": "≈0.5–1.9 kg",
+  "mass_kg": 1,
+  "ma": [
+   125,
+   120
+  ],
+  "period": "Early Cretaceous (Aptian)",
+  "place": "Jiufotang Formation, Liaoning, China",
+  "diet": "Carnivore (gut contents: a bird, a mammal's foot, fish, a lizard)",
+  "fact": "Its fossil feathers held narrow, stacked pigment sacs like a starling's. In 2012, scientists concluded that this four-winged dinosaur was glossy, iridescent black.",
+  "compare": "four-winged and about as long as an adult's arm",
+  "sources": [
+   {
+    "label": "Wikipedia: Microraptor",
+    "url": "https://en.wikipedia.org/wiki/Microraptor"
+   },
+   {
+    "label": "Natural History Museum (London) Dino Directory: Microraptor",
+    "url": "https://www.nhm.ac.uk/discover/dino-directory/microraptor.html"
+   },
+   {
+    "label": "Li et al. 2012, Science (iridescent plumage)",
+    "url": "https://doi.org/10.1126/science.1213780"
+   }
+  ]
+ },
+ {
+  "id": "eoraptor",
+  "name": "Eoraptor",
+  "sci": "Eoraptor lunensis",
+  "pron": "EE-oh-RAP-tor",
+  "meaning": "'dawn plunderer'",
+  "length_cm": 125,
+  "length": "≈1.2–1.3 m (Sereno et al. 2013); NHM gives up to 1.7 m",
+  "height": "Small and light: thigh bone only ≈15 cm long",
+  "mass": "≈10 kg or less",
+  "mass_kg": 10,
+  "ma": [
+   231.4,
+   228.9
+  ],
+  "period": "Late Triassic (Carnian)",
+  "place": "Ischigualasto Formation, 'Valley of the Moon', San Juan, Argentina",
+  "diet": "Probably omnivore (debated: some argue carnivore)",
+  "fact": "One of the earliest dinosaurs, about 230 million years old. First called a meat-eating theropod, it is now usually placed near the start of the sauropod line.",
+  "compare": "about as long as a 7-year-old is tall, and as heavy as a beagle",
+  "sources": [
+   {
+    "label": "Wikipedia: Eoraptor",
+    "url": "https://en.wikipedia.org/wiki/Eoraptor"
+   },
+   {
+    "label": "Natural History Museum (London) Dino Directory: Eoraptor",
+    "url": "https://www.nhm.ac.uk/discover/dino-directory/eoraptor.html"
+   }
+  ]
+ },
+ {
+  "id": "compsognathus",
+  "name": "Compsognathus",
+  "sci": "Compsognathus longipes",
+  "pron": "komp-SOG-nuh-thus",
+  "meaning": "'elegant (dainty) jaw'",
+  "length_cm": 125,
+  "length": "1.25–1.4 m (large French adult); German specimen 0.7–0.9 m (juvenile)",
+  "height": "≈29 cm at the hips (French specimen)",
+  "mass": "≈2.5–3.5 kg (French specimen)",
+  "mass_kg": 3,
+  "ma": [
+   150.8,
+   145
+  ],
+  "period": "Late Jurassic (late Kimmeridgian–early Tithonian)",
+  "place": "Bavaria, Germany, and Canjuers, southern France",
+  "diet": "Carnivore (small lizards)",
+  "fact": "Both known skeletons have lizards in their bellies. The German one tore its lizard apart and swallowed it; in 2017 that lizard became a new species, Schoenesmahl dyspepsia.",
+  "compare": "about as heavy as a house cat",
+  "sources": [
+   {
+    "label": "Wikipedia: Compsognathus",
+    "url": "https://en.wikipedia.org/wiki/Compsognathus"
+   }
+  ]
+ },
+ {
+  "id": "velociraptor",
+  "name": "Velociraptor",
+  "sci": "Velociraptor mongoliensis",
+  "pron": "veh-LOSS-ih-RAP-tor",
+  "meaning": "'swift plunderer'",
+  "length_cm": 180,
+  "length": "1.5–2.07 m",
+  "height": "≈0.5 m at the hips",
+  "mass": "≈14–20 kg",
+  "mass_kg": 17,
+  "ma": [
+   75,
+   71
+  ],
+  "period": "Late Cretaceous (Campanian)",
+  "place": "Gobi Desert: Djadokhta Formation, Mongolia; Inner Mongolia, China",
+  "diet": "Carnivore (preyed on Protoceratops; also scavenged)",
+  "fact": "In 2007, quill knobs, the anchors for big wing feathers, were reported on a Velociraptor forearm. It was feathered, with hips only knee-high to a human.",
+  "compare": "about as heavy as a coyote",
+  "sources": [
+   {
+    "label": "Wikipedia: Velociraptor",
+    "url": "https://en.wikipedia.org/wiki/Velociraptor"
+   },
+   {
+    "label": "Turner, Makovicky & Norell 2007, Science (quill knobs)",
+    "url": "https://doi.org/10.1126/science.1145076"
+   }
+  ]
+ },
+ {
+  "id": "protoceratops",
+  "name": "Protoceratops",
+  "sci": "Protoceratops andrewsi",
+  "pron": "PRO-toe-SERR-uh-tops",
+  "meaning": "'first horned face'",
+  "length_cm": 180,
+  "length": "≈1.8–2.5 m",
+  "height": "≈0.6 m at the hips (approximate)",
+  "mass": "≈60–105 kg (Campione & Evans 2020); some older figures much higher",
+  "mass_kg": 85,
+  "ma": [
+   75,
+   71
+  ],
+  "period": "Late Cretaceous (Campanian)",
+  "place": "Gobi Desert: Mongolia and Inner Mongolia, China",
+  "diet": "Herbivore",
+  "fact": "Protoceratops laid soft, leathery eggs like a turtle's. A 2020 study concluded that the first dinosaur eggs were soft, and hard shells evolved at least three times.",
+  "compare": "about the size of a sheep",
+  "sources": [
+   {
+    "label": "Wikipedia: Protoceratops",
+    "url": "https://en.wikipedia.org/wiki/Protoceratops"
+   },
+   {
+    "label": "Natural History Museum (London) Dino Directory: Protoceratops",
+    "url": "https://www.nhm.ac.uk/discover/dino-directory/protoceratops.html"
+   },
+   {
+    "label": "Norell et al. 2020, Nature (The first dinosaur egg was soft)",
+    "url": "https://doi.org/10.1038/s41586-020-2412-8"
+   }
+  ]
+ },
+ {
+  "id": "coelophysis",
+  "name": "Coelophysis",
+  "sci": "Coelophysis bauri",
+  "pron": "SEE-loh-FY-sis",
+  "meaning": "'hollow form'",
+  "length_cm": 300,
+  "length": "up to ≈3 m",
+  "height": "a little over 1 m at the hips",
+  "mass": "≈15–25 kg",
+  "mass_kg": 20,
+  "ma": [
+   215,
+   201.4
+  ],
+  "period": "Late Triassic (Norian–Rhaetian)",
+  "place": "Ghost Ranch, New Mexico, USA (Chinle Formation)",
+  "diet": "Carnivore (small, fast prey)",
+  "fact": "In January 1998 a Coelophysis skull rode Space Shuttle Endeavour (STS-89) to the Mir space station. It was only the second dinosaur in space, after Maiasaura.",
+  "compare": "as long as a small car, but only as heavy as a 7-year-old",
+  "sources": [
+   {
+    "label": "Wikipedia: Coelophysis",
+    "url": "https://en.wikipedia.org/wiki/Coelophysis"
+   }
+  ]
+ },
+ {
+  "id": "deinonychus",
+  "name": "Deinonychus",
+  "sci": "Deinonychus antirrhopus",
+  "pron": "dy-NON-ih-kus",
+  "meaning": "'terrible claw'",
+  "length_cm": 340,
+  "length": "3.3–3.4 m",
+  "height": "≈0.87 m at the hips",
+  "mass": "≈60–73 kg (Paul); up to ≈100 kg (Campione et al.)",
+  "mass_kg": 73,
+  "ma": [
+   115,
+   98
+  ],
+  "period": "Early Cretaceous (Aptian–Albian), possibly into the Cenomanian",
+  "place": "Montana, Wyoming and Oklahoma, USA (Cloverly and Antlers formations)",
+  "diet": "Carnivore (fed on the plant-eater Tenontosaurus)",
+  "fact": "John Ostrom described this agile hunter, with its 12 cm sickle claw, in 1969. That work sparked the 'Dinosaur Renaissance': dinosaurs were active, bird-like animals, not sluggish lizards.",
+  "compare": "as long as a small car, and about as heavy as an adult human",
+  "sources": [
+   {
+    "label": "Wikipedia: Deinonychus",
+    "url": "https://en.wikipedia.org/wiki/Deinonychus"
+   }
+  ]
+ },
+ {
+  "id": "pachycephalosaurus",
+  "name": "Pachycephalosaurus",
+  "sci": "Pachycephalosaurus wyomingensis",
+  "pron": "PACK-ee-SEF-uh-loh-SOR-us",
+  "meaning": "'thick-headed lizard'",
+  "length_cm": 450,
+  "length": "≈3–4.5 m (estimates vary: known mostly from skulls)",
+  "height": "Body poorly known; skull roof up to ≈22–25 cm thick",
+  "mass": "≈370–450 kg",
+  "mass_kg": 410,
+  "ma": [
+   70,
+   66
+  ],
+  "period": "Late Cretaceous (Maastrichtian)",
+  "place": "Montana, South Dakota and Wyoming (USA); Alberta (Canada)",
+  "diet": "Herbivore (diet uncertain; possibly some other foods)",
+  "fact": "A 2013 study found healed bone infections on 22% of pachycephalosaur domes, matching head-to-head combat. Flat-headed individuals showed none.",
+  "compare": "as long as a car, and as heavy as a grand piano",
+  "sources": [
+   {
+    "label": "Wikipedia: Pachycephalosaurus",
+    "url": "https://en.wikipedia.org/wiki/Pachycephalosaurus"
+   },
+   {
+    "label": "Natural History Museum (London) Dino Directory: Pachycephalosaurus",
+    "url": "https://www.nhm.ac.uk/discover/dino-directory/pachycephalosaurus.html"
+   },
+   {
+    "label": "Peterson, Dischler & Longrich 2013, PLoS ONE (dome lesions)",
+    "url": "https://doi.org/10.1371/journal.pone.0068620"
+   }
+  ]
+ },
+ {
+  "id": "ankylosaurus",
+  "name": "Ankylosaurus",
+  "sci": "Ankylosaurus magniventris",
+  "pron": "ANG-kuh-loh-SOR-us",
+  "meaning": "'fused lizard'",
+  "length_cm": 700,
+  "length": "≈6–8 m",
+  "height": "≈1.4–1.7 m at the hips (Carpenter 2004)",
+  "mass": "≈4.8–8 tonnes",
+  "mass_kg": 6000,
+  "ma": [
+   68,
+   66
+  ],
+  "period": "Late Cretaceous (late Maastrichtian)",
+  "place": "Montana and Wyoming (USA); Alberta and Saskatchewan (Canada)",
+  "diet": "Herbivore (low-growing ferns and shrubs)",
+  "fact": "Its tail club, up to 57 cm wide, was made of armour plates on fused tail vertebrae. A 2009 study found adult clubs could break bone.",
+  "compare": "longer than a pickup truck, and as heavy as an elephant",
+  "sources": [
+   {
+    "label": "Wikipedia: Ankylosaurus",
+    "url": "https://en.wikipedia.org/wiki/Ankylosaurus"
+   },
+   {
+    "label": "Arbour & Mallon 2017, FACETS (size and anatomy)",
+    "url": "https://doi.org/10.1139/facets-2017-0063"
+   }
+  ]
+ },
+ {
+  "id": "dilophosaurus",
+  "name": "Dilophosaurus",
+  "sci": "Dilophosaurus wetherilli",
+  "pron": "dy-LOH-fuh-SOR-us",
+  "meaning": "'two-crested lizard'",
+  "length_cm": 700,
+  "length": "≈6–7 m",
+  "height": "≈1.4–1.75 m at the hips",
+  "mass": "≈280–400 kg",
+  "mass_kg": 400,
+  "ma": [
+   195.2,
+   183.7
+  ],
+  "period": "Early Jurassic (Sinemurian–Toarcian; c. 186 Ma)",
+  "place": "Kayenta Formation, northern Arizona, USA (Navajo Nation)",
+  "diet": "Carnivore (an apex predator)",
+  "fact": "A 2020 redescription found air sacs reaching into its paired head crests, which were probably sheathed in keratin. Its snout was also far more robust than once thought.",
+  "compare": "longer than a minibus, but a bit lighter than a horse",
+  "sources": [
+   {
+    "label": "Wikipedia: Dilophosaurus",
+    "url": "https://en.wikipedia.org/wiki/Dilophosaurus"
+   },
+   {
+    "label": "Marsh & Rowe 2020, Journal of Paleontology (redescription)",
+    "url": "https://doi.org/10.1017/jpa.2020.14"
+   }
+  ]
+ },
+ {
+  "id": "triceratops",
+  "name": "Triceratops",
+  "sci": "Triceratops horridus",
+  "pron": "try-SERR-uh-tops",
+  "meaning": "'three-horned face'",
+  "length_cm": 850,
+  "length": "≈8–9 m",
+  "height": "≈2.3–3 m tall (mounted specimens 'Kelsey' and 'Big John')",
+  "mass": "≈6–10 tonnes",
+  "mass_kg": 8000,
+  "ma": [
+   69,
+   66
+  ],
+  "period": "Late Cretaceous (late Maastrichtian)",
+  "place": "Western North America (Wyoming, Montana, the Dakotas, Colorado, Alberta, Saskatchewan)",
+  "diet": "Herbivore",
+  "fact": "The 'Lane' specimen preserves large patches of skin texture, with scales more than 10 cm across. Triceratops wore a coat of big, pebbly scales.",
+  "compare": "heavier than an African elephant",
+  "sources": [
+   {
+    "label": "Wikipedia: Triceratops",
+    "url": "https://en.wikipedia.org/wiki/Triceratops"
+   }
+  ]
+ },
+ {
+  "id": "allosaurus",
+  "name": "Allosaurus",
+  "sci": "Allosaurus fragilis",
+  "pron": "AL-oh-SOR-us",
+  "meaning": "'different lizard'",
+  "length_cm": 850,
+  "length": "≈7.5–9 m",
+  "height": "roughly 2.5–3 m at the hips (approximate)",
+  "mass": "≈1.7–2.7 tonnes (published range 1–4 t)",
+  "mass_kg": 2000,
+  "ma": [
+   155,
+   143.1
+  ],
+  "period": "Late Jurassic (Oxfordian–Tithonian)",
+  "place": "Morrison Formation, western USA; also Portugal",
+  "diet": "Carnivore (apex predator)",
+  "fact": "One Allosaurus tail bone has a partly healed puncture that fits a Stegosaurus tail spike exactly. The predator survived this Jurassic duel, at least for a while.",
+  "compare": "as long as two cars nose to tail, and about as heavy as a white rhino",
+  "sources": [
+   {
+    "label": "Wikipedia: Allosaurus",
+    "url": "https://en.wikipedia.org/wiki/Allosaurus"
+   },
+   {
+    "label": "Wikipedia: Stegosaurus",
+    "url": "https://en.wikipedia.org/wiki/Stegosaurus"
+   }
+  ]
+ },
+ {
+  "id": "stegosaurus",
+  "name": "Stegosaurus",
+  "sci": "Stegosaurus stenops",
+  "pron": "STEG-oh-SOR-us",
+  "meaning": "'roof lizard'",
+  "length_cm": 900,
+  "length": "≈6.5–7 m typical; large individuals 7.5–9 m (shown: 9 m)",
+  "height": "'Sophie' specimen: 2.9 m tall to the tips of its plates",
+  "mass": "≈3.5–5 tonnes (largest perhaps ≈7 t)",
+  "mass_kg": 5000,
+  "ma": [
+   155,
+   145
+  ],
+  "period": "Late Jurassic (Kimmeridgian–Tithonian)",
+  "place": "Morrison Formation (Colorado, Wyoming, Utah, USA); also Portugal",
+  "diet": "Herbivore (low browser)",
+  "fact": "Stegosaurus weighed over 4.5 tonnes, but its brain was no heavier than about 80 grams. That was proportionally one of the smallest brains of any dinosaur.",
+  "compare": "as heavy as an elephant",
+  "sources": [
+   {
+    "label": "Wikipedia: Stegosaurus",
+    "url": "https://en.wikipedia.org/wiki/Stegosaurus"
+   },
+   {
+    "label": "Natural History Museum (London) Dino Directory: Stegosaurus",
+    "url": "https://www.nhm.ac.uk/discover/dino-directory/stegosaurus.html"
+   }
+  ]
+ },
+ {
+  "id": "parasaurolophus",
+  "name": "Parasaurolophus",
+  "sci": "Parasaurolophus walkeri",
+  "pron": "PARR-uh-sor-OL-uh-fus",
+  "meaning": "'near crested lizard' (near Saurolophus)",
+  "length_cm": 950,
+  "length": "≈7.5 m (average adult) to ≈9.5 m (type specimen)",
+  "height": "Could browse up to ≈4 m high; skull with crest ≈1.6 m long",
+  "mass": "≈2.6–5 tonnes",
+  "mass_kg": 3500,
+  "ma": [
+   76.5,
+   73
+  ],
+  "period": "Late Cretaceous (Campanian)",
+  "place": "Alberta (Canada); New Mexico and Utah (USA)",
+  "diet": "Herbivore (browser)",
+  "fact": "Its hollow crest held looping air tubes. A 1990s computer model of a crested skull found it resonated at about 30 hertz, a deep, low call.",
+  "compare": "about as long as a school bus",
+  "sources": [
+   {
+    "label": "Wikipedia: Parasaurolophus",
+    "url": "https://en.wikipedia.org/wiki/Parasaurolophus"
+   }
+  ]
+ },
+ {
+  "id": "trex",
+  "name": "Tyrannosaurus rex",
+  "sci": "Tyrannosaurus rex",
+  "pron": "tie-RAN-oh-SOR-us rex",
+  "meaning": "'tyrant lizard king'",
+  "length_cm": 1230,
+  "length": "12.3–12.8 m (Sue)",
+  "height": "3.66–3.96 m at the hips (Sue)",
+  "mass": "≈8.4–9.5 tonnes (Sue; published range ≈5.6–10 t)",
+  "mass_kg": 9000,
+  "ma": [
+   69,
+   66
+  ],
+  "period": "Late Cretaceous (late Maastrichtian)",
+  "place": "Western North America (Montana, South Dakota, Wyoming, Alberta, Saskatchewan…)",
+  "diet": "Carnivore",
+  "fact": "A 2023 study of tooth enamel and tooth size concluded that T. rex probably had lizard-like lips. They would have covered its teeth when its mouth was closed.",
+  "compare": "about as long as a city bus",
+  "sources": [
+   {
+    "label": "Wikipedia: Sue (dinosaur)",
+    "url": "https://en.wikipedia.org/wiki/Sue_(dinosaur)"
+   },
+   {
+    "label": "Hutchinson et al. 2011, PLoS ONE (body mass)",
+    "url": "https://doi.org/10.1371/journal.pone.0026037"
+   },
+   {
+    "label": "Cullen et al. 2023, Science (lips)",
+    "url": "https://doi.org/10.1126/science.abo7877"
+   }
+  ]
+ },
+ {
+  "id": "spinosaurus",
+  "name": "Spinosaurus",
+  "sci": "Spinosaurus aegyptiacus",
+  "pron": "SPY-nuh-SOR-us",
+  "meaning": "'spine lizard'",
+  "length_cm": 1400,
+  "length": "≈14 m (Sereno et al. 2022); some estimates 15+ m",
+  "height": "Sail spines at least 1.65 m tall; hind leg ≈2.9 m long",
+  "mass": "≈6–9 tonnes (Sereno et al. 2022 model: 7.4 t)",
+  "mass_kg": 7400,
+  "ma": [
+   100,
+   94
+  ],
+  "period": "Late Cretaceous (Cenomanian)",
+  "place": "Egypt (Bahariya Formation) and Morocco (Kem Kem beds)",
+  "diet": "Mainly fish, plus other prey",
+  "fact": "In 2020, a nearly complete tail revealed tall spines forming a fin-like paddle, and robot tests suggested it could swim. Others argue it waded like a giant heron.",
+  "compare": "longer than a city bus",
+  "sources": [
+   {
+    "label": "Wikipedia: Spinosaurus",
+    "url": "https://en.wikipedia.org/wiki/Spinosaurus"
+   },
+   {
+    "label": "Ibrahim et al. 2020, Nature (tail)",
+    "url": "https://doi.org/10.1038/s41586-020-2190-3"
+   },
+   {
+    "label": "Sereno et al. 2022, eLife (size and wading)",
+    "url": "https://doi.org/10.7554/eLife.80092"
+   }
+  ]
+ },
+ {
+  "id": "shantungosaurus",
+  "name": "Shantungosaurus",
+  "sci": "Shantungosaurus giganteus",
+  "pron": "shan-TUNG-oh-SOR-us",
+  "meaning": "'Shandong lizard'",
+  "length_cm": 1500,
+  "length": "≈15 m (mounted skeletons 14.7–16.6 m)",
+  "height": "Its skull alone was ≈1.63 m long",
+  "mass": "≈13–16 tonnes",
+  "mass_kg": 14000,
+  "ma": [
+   77.3,
+   71
+  ],
+  "period": "Late Cretaceous (Campanian)",
+  "place": "Wangshi Group, Zhucheng, Shandong, China",
+  "diet": "Herbivore",
+  "fact": "It was the largest known duck-billed dinosaur. Behind its toothless beak, its jaws were packed with about 1,500 small grinding teeth.",
+  "compare": "longer than a city bus, and as heavy as two or three elephants",
+  "sources": [
+   {
+    "label": "Wikipedia: Shantungosaurus",
+    "url": "https://en.wikipedia.org/wiki/Shantungosaurus"
+   },
+   {
+    "label": "Natural History Museum (London) Dino Directory: Shantungosaurus",
+    "url": "https://www.nhm.ac.uk/discover/dino-directory/shantungosaurus.html"
+   }
+  ]
+ },
+ {
+  "id": "brachiosaurus",
+  "name": "Brachiosaurus",
+  "sci": "Brachiosaurus altithorax",
+  "pron": "BRACK-ee-oh-SOR-us",
+  "meaning": "'arm lizard'",
+  "length_cm": 2000,
+  "length": "≈18–22 m",
+  "height": "≈9.4 m (Foster) to 12–13 m (Paul) tall; head over 9 m off the ground",
+  "mass": "≈28–47 tonnes",
+  "mass_kg": 37000,
+  "ma": [
+   155.6,
+   145.5
+  ],
+  "period": "Late Jurassic (Kimmeridgian–Tithonian)",
+  "place": "Morrison Formation, western USA (holotype near Fruita, Colorado)",
+  "diet": "Herbivore (high browser)",
+  "fact": "The famous giant skeleton in Berlin is not Brachiosaurus. It is Giraffatitan from Tanzania, given its own genus in 2009 after Taylor found 26 differences.",
+  "compare": "its head could peer into a third-floor window",
+  "sources": [
+   {
+    "label": "Wikipedia: Brachiosaurus",
+    "url": "https://en.wikipedia.org/wiki/Brachiosaurus"
+   },
+   {
+    "label": "Wikipedia: Giraffatitan",
+    "url": "https://en.wikipedia.org/wiki/Giraffatitan"
+   }
+  ]
+ },
+ {
+  "id": "diplodocus",
+  "name": "Diplodocus",
+  "sci": "Diplodocus carnegii",
+  "pron": "dih-PLOD-uh-kus",
+  "meaning": "'double beam' (its forked tail chevrons)",
+  "length_cm": 2500,
+  "length": "≈24–26 m",
+  "height": "Hips well above an adult's head; tail ≈55% of its length",
+  "mass": "≈12–15 tonnes",
+  "mass_kg": 13000,
+  "ma": [
+   152,
+   149
+  ],
+  "period": "Late Jurassic (Kimmeridgian)",
+  "place": "Morrison Formation, western USA ('Dippy' came from Wyoming)",
+  "diet": "Herbivore (branch-stripping)",
+  "fact": "Between 1905 and 1928, Andrew Carnegie sent casts of 'Dippy' to museums from London to Mexico City. It has been displayed in more places than any other sauropod.",
+  "compare": "longer than a tennis court (23.8 m)",
+  "sources": [
+   {
+    "label": "Wikipedia: Diplodocus",
+    "url": "https://en.wikipedia.org/wiki/Diplodocus"
+   },
+   {
+    "label": "Wikipedia: Dippy",
+    "url": "https://en.wikipedia.org/wiki/Dippy"
+   }
+  ]
+ },
+ {
+  "id": "patagotitan",
+  "name": "Patagotitan",
+  "sci": "Patagotitan mayorum",
+  "pron": "PAT-uh-go-TY-tun",
+  "meaning": "'Patagonian titan'",
+  "length_cm": 3100,
+  "length": "≈31–37 m (31 m, Paul; 37 m, original description)",
+  "height": "The Field Museum cast 'Máximo' stands 8.5 m (28 ft) tall at the head",
+  "mass": "≈50–69 tonnes (best recent estimate ≈57 t)",
+  "mass_kg": 57000,
+  "ma": [
+   102,
+   101
+  ],
+  "period": "Early Cretaceous (latest Albian, ≈101.6 Ma)",
+  "place": "Cerro Barcino Formation, Chubut, Patagonia, Argentina",
+  "diet": "Herbivore",
+  "fact": "Bones of at least six young adults were found at one ranch site. First reported at 69–77 tonnes, it was re-weighed in 2020 at about 57 tonnes.",
+  "compare": "about as long as a Boeing 737 airliner",
+  "sources": [
+   {
+    "label": "Wikipedia: Patagotitan",
+    "url": "https://en.wikipedia.org/wiki/Patagotitan"
+   },
+   {
+    "label": "Field Museum: Máximo the Titanosaur",
+    "url": "https://www.fieldmuseum.org/exhibition/halls-and-galleries/maximo-titanosaur"
+   }
+  ]
+ },
+ {
+  "id": "argentinosaurus",
+  "name": "Argentinosaurus",
+  "sci": "Argentinosaurus huinculensis",
+  "pron": "AR-jen-TEE-noh-SOR-us",
+  "meaning": "'Argentina lizard'",
+  "length_cm": 3500,
+  "length": "≈30–35 m (contested; one estimate ≈40 m)",
+  "height": "≈7.3 m at the shoulder (Sellers et al. 2013)",
+  "mass": "≈65–80 tonnes (published range ≈50–100 t)",
+  "mass_kg": 73000,
+  "ma": [
+   106,
+   93
+  ],
+  "period": "Mid-Cretaceous",
+  "place": "Huincul Formation, Neuquén Province, Patagonia, Argentina",
+  "diet": "Herbivore",
+  "fact": "It is known only from fragments, but one back vertebra is about 1.59 m tall. It is a top contender for the heaviest land animal ever.",
+  "compare": "about as long as a blue whale, and as heavy as about 12 elephants",
+  "sources": [
+   {
+    "label": "Wikipedia: Argentinosaurus",
+    "url": "https://en.wikipedia.org/wiki/Argentinosaurus"
+   },
+   {
+    "label": "Natural History Museum (London) Dino Directory: Argentinosaurus",
+    "url": "https://www.nhm.ac.uk/discover/dino-directory/argentinosaurus.html"
+   },
+   {
+    "label": "Maniel et al. 2026, Gondwana Research (Albian U-Pb ages, Huincul Fm.)",
+    "url": "https://doi.org/10.1016/j.gr.2026.06.020"
+   }
+  ],
+  "note": "Dating is debated: traditionally ≈96–93 million years ago (Cenomanian–Turonian), but a 2026 U-Pb study re-dates its rocks to ≈106 million years ago."
+ },
+ {
+  "id": "asteroid",
+  "name": "The Chicxulub impactor",
+  "sci": "",
+  "diameter": "≈10 km (standard estimate; model values span ≈10–20 km depending on assumed speed and density)",
+  "impact_date": "≈66.04 million years ago: 66.043 ± 0.011 Ma (± 0.043 Ma including systematic error; Renne et al. 2013). A 2018 Gorgonilla Island date gives 66.051 ± 0.031 Ma.",
+  "impact_speed": "≈20 km/s (the most probable speed modelled; models span ≈12–20 km/s)",
+  "impact_angle": "steep, ≈45–60° from horizontal, arriving from the north-east",
+  "crater": "≈180–200 km across (Chicxulub crater, buried ≈1 km deep)",
+  "location": "Yucatán Peninsula, Mexico (centre near Chicxulub Pueblo; 21°24′N 89°30′W)",
+  "energy": "≈10²³–10²⁴ J in most estimates (some up to 10²⁵ J)",
+  "energy_mt": "≈100 million megatons of TNT (≈4 × 10²³ J); published estimates run from tens of millions to billions of megatons",
+  "hiroshima": "≈7–10 billion Hiroshima-size bombs. UT Austin gives 'the equivalent power of 10 billion atomic bombs of the size used in World War II'; 100 million Mt ÷ 15 kt ≈ 6.7 billion",
+  "extinction": "≈75% of plant and animal species (≈76% in During et al. 2022)",
+  "aftermath": [
+   "Dust, soot and sulfur blocked out the Sun. Within days, fine dust had wrapped the whole planet in an impact winter.",
+   "Photosynthesis on land and in the sea shut down for almost two years.",
+   "Models suggest sub-freezing temperatures for 3–16 years and over 30 years of recovery. Sea temperatures plunged for months to decades.",
+   "Survivors were mostly small: birds, rat-sized mammals, crocodilians (about half), turtles (over 80%), and some lizards and snakes."
+  ],
+  "survivors": "The only dinosaurs to survive were birds. Every non-avian dinosaur died out, but one branch of small feathered theropods came through, and today they are all around us.",
+  "survivors_short": "Birds are living dinosaurs: the only dinosaur branch to survive the impact, they now number more than 11,000 species.",
+  "finale_rows": [
+   "A <b>10 km</b> asteroid hit Mexico’s Yucatán at about <b>20 km/s</b>",
+   "It blasted a crater <b>180–200 km</b> wide, with the energy of <b>billions</b> of Hiroshima bombs",
+   "Dust and soot shut down photosynthesis for <b>almost two years</b>",
+   "About <b>3 in 4</b> species vanished. Of the dinosaurs, only the <b>birds</b> survived"
+  ],
+  "fact": "Set down at sea level, the 10 km asteroid would have stood taller than Mount Everest.",
+  "sources": [
+   {
+    "label": "Wikipedia: Chicxulub crater",
+    "url": "https://en.wikipedia.org/wiki/Chicxulub_crater"
+   },
+   {
+    "label": "Schulte et al. 2010, Science (review)",
+    "url": "https://academicweb.nd.edu/~cneal/CRN_Papers/Schulte10_Sci_Chicxulub.pdf"
+   },
+   {
+    "label": "Renne et al. 2013, Science (66.043 Ma age)",
+    "url": "https://doi.org/10.1126/science.1230492"
+   },
+   {
+    "label": "Collins et al. 2020, Nature Communications (speed and angle)",
+    "url": "https://doi.org/10.1038/s41467-020-15269-x"
+   },
+   {
+    "label": "University of Texas at Austin news, 2019 (10 billion atomic bombs)",
+    "url": "https://news.utexas.edu/2019/09/09/rocks-at-asteroid-impact-site-record-first-day-of-dinosaur-extinction/"
+   },
+   {
+    "label": "VUB press release on Senel et al. 2023, Nature Geoscience (dust, about two years without photosynthesis)",
+    "url": "https://press.vub.ac.be/vub-research-shows-that-fine-particulates-signalled-the-end-of-the-dinosaurs"
+   },
+   {
+    "label": "Brugger et al. 2017, Geophysical Research Letters (3–16 years sub-freezing)",
+    "url": "https://doi.org/10.1002/2016GL072241"
+   },
+   {
+    "label": "Vellekoop et al. 2014, PNAS (sea-surface cooling)",
+    "url": "https://doi.org/10.1073/pnas.1319253111"
+   },
+   {
+    "label": "During et al. 2022, Nature (≈76% of species; impact in spring)",
+    "url": "https://doi.org/10.1038/s41586-022-04446-1"
+   },
+   {
+    "label": "Wikipedia: Cretaceous–Paleogene extinction event",
+    "url": "https://en.wikipedia.org/wiki/Cretaceous–Paleogene_extinction_event"
+   }
+  ],
+  "diameter_s": "≈10 km (6 miles)",
+  "speed_s": "≈20 km/s",
+  "crater_s": "≈180–200 km",
+  "energy_s": "≈100 million megatons of TNT"
+ }
+]
